@@ -1,3 +1,11 @@
+-- Creates the party table
+CREATE TABLE parties (
+  id INTEGER AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(50) NOT NULL,
+  description TEXT
+);
+
+-- Creates the Candidates
 CREATE TABLE candidates (
   id INTEGER AUTO_INCREMENT PRIMARY KEY,
   first_name VARCHAR(30) NOT NULL,
