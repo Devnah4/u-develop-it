@@ -1,12 +1,13 @@
+-- Uses election Database
 -- Deletes the previos instance of a table
 DROP TABLE IF EXISTS candidates;
 DROP TABLE IF EXISTS parties;
 
 -- Creates the party table
 CREATE TABLE parties (
-  id INTEGER AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(50) NOT NULL,
-  description TEXT
+  `id` INTEGER AUTO_INCREMENT PRIMARY KEY,
+  `name` VARCHAR(50) NOT NULL,
+  `description` TEXT
 );
 
 -- Creates the Candidates

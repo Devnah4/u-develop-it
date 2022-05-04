@@ -22,15 +22,19 @@ const db = mysql.createConnection(
 );
 
 // GET test route
-app.get("/", (req, res) => {
-  res.json({
-    message: "Hello Nerd!",
-  });
-});
+// app.get("/", (req, res) => {
+//   res.json({
+//     message: "Hello Nerd!",
+//   });
+// });
 
 // Returns data for the candidates table
 app.get("/api/candidates", (req, res) => {
-  const sql = `SELECT * FROM candidates`;
+  const sql = `SELECT candidates.*, parties.name
+                AS party_name
+                FROM candidates
+                LEFT JOIN parties
+                ON candidates.party_id = parties.id`;
 
   db.query(sql, (err, rows) => {
     if (err) {
@@ -46,7 +50,12 @@ app.get("/api/candidates", (req, res) => {
 
 // Returns data for a single candidate
 app.get("/api/candidate/:id", (req, res) => {
-  const sql = `SELECT * FROM candidates WHERE id = ?`;
+  const sql = `SELECT candidates.*, parties.name
+  AS party_name
+  FROM candidates
+  LEFT JOIN parties
+  ON candidates.party_id = parties.id
+  WHERE candidates.id = ?`;
   const params = [req.params.id];
 
   db.query(sql, params, (err, row) => {
